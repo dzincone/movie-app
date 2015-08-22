@@ -1,0 +1,20 @@
+.main-header {
+  text-align: center;
+}
+
+.main-header input {
+  margin-bottom: 20px;
+}
+
+.main-header button {
+  padding: 10px;
+  background-color: blue;
+  color: white;
+  border: 1px solid black;
+  border-radius: 5px;
+  outline: none;
+}
+
+.main-header button:hover {
+  background-color: #437AF8;
+}

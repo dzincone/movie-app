@@ -4,29 +4,28 @@ app.config(function($routeProvider, $locationProvider) {
     $routeProvider
       .when('/', {
         templateUrl: 'partials/home.html',
-        controller: 'HomeController'
+        controller: 'HeaderController'
       })
-      .when('/projects', {
-        templateUrl: 'partials/projects.html',
-        controller: 'ProjectsController'
-      })
-      .when('/bio', {
-        templateUrl: 'partials/bio.html',
-        controller: 'BioController'
-      })
-      .when('/resume', {
-        templateUrl: 'partials/resume.html',
-        controller: 'ResumeController'
-      })
-      .when('/:math/:first/:second', {
-        templateUrl: 'partials/math.html',
-        controller: 'AdditionController'
+      .when('/movie/:id', {
+        templateUrl: 'partials/movie.html',
+        controller: 'HeaderController'
       })
       .otherwise({redirectTo: "/"})
 
       $locationProvider.html5Mode(true)
 });
 
-app.controller("HeaderController", function($scope){
-  $scope.search = null;
+app.controller("HeaderController", function($scope, $http, $routeParams, $location){
+  $scope.search = null,
+  $scope.searchOMDB = function(){
+    $location.path("/")
+    $http.get("http://www.omdbapi.com/?s=" + $scope.search).then(function(movies){
+      $scope.movieInfo = movies
+
+    })
+  },
+  $http.get("http://www.omdbapi.com/?i=" + $routeParams.id).then(function(movie){
+    $scope.movieFull = movie.data
+  })
+
 })

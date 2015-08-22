@@ -1,1 +1,4 @@
-<h1>Hello</h1>
+
+<div ng-repeat="title in movieInfo.data.Search">
+  <p><a href="/movie/{{title.imdbID}}">{{title.Title}}</a></p>
+</div>
